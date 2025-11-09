@@ -1,0 +1,78 @@
+# MCP Server Configuration for Toxicity Analysis
+mcp:
+  name: "toxicity-analyzer"
+  version: "1.0.0"
+  description: "MCP server for analyzing chat toxicity and validating with Reddit communities"
+  
+server:
+  type: "stdio"
+  transport: "http"
+  
+tools:
+  - name: "analyze_toxicity"
+    description: "Analyze chat conversation for toxic behavior and extract keywords"
+    inputSchema:
+      type: "object"
+      properties:
+        conversation_data:
+          type: "array"
+          items:
+            type: "string"
+          description: "Array of chat messages to analyze"
+        api_key:
+          type: "string"
+          description: "Gemini API key for analysis"
+        sensitivity:
+          type: "string"
+          enum: ["low", "medium", "high"]
+          default: "medium"
+          description: "Sensitivity level for toxicity detection"
+      required:
+        - "conversation_data"
+        - "api_key"
+  
+  - name: "search_reddit_keywords"
+    description: "Search Reddit for subreddits relevant to toxicity keywords"
+    inputSchema:
+      type: "object"
+      properties:
+        keywords:
+          type: "array"
+          items:
+            type: "string"
+          description: "Keywords extracted from toxic conversation"
+        limit:
+          type: "integer"
+          default: 10
+          description: "Maximum number of subreddits to return"
+      required:
+        - "keywords"
+  
+  - name: "validate_toxicity"
+    description: "Validate toxicity analysis with human opinions from Reddit"
+    inputSchema:
+      type: "object"
+      properties:
+        chat_data:
+          type: "array"
+          items:
+            type: "string"
+          description: "Original chat messages"
+        subreddit_data:
+          type: "array"
+          items:
+            type: "object"
+          description: "Subreddit data from search results"
+        api_key:
+          type: "string"
+          description: "Gemini API key for validation"
+      required:
+        - "chat_data"
+        - "subreddit_data"
+        - "api_key"
+
+resources:
+  - uri: "reddit://subreddits"
+    name: "relevant_subreddits"
+    description: "Subreddits relevant to toxicity analysis"
+    mimeType: "application/json"

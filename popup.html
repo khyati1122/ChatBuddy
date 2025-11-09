@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 380px;
+            background: white;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-900);
+        }
+
+        .container {
+            background: white;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--gray-700);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            background: var(--gray-50);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .help-text {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-card {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            border: 1.5px solid var(--gray-200);
+            transition: all 0.2s ease;
+        }
+
+        .status-active {
+            background: #ecfdf5;
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .status-inactive {
+            background: #f8fafc;
+            border-color: var(--gray-300);
+            color: var(--gray-600);
+        }
+
+        .status-icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .status-text {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+        }
+
+        .btn-stop:hover {
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .settings {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .settings-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--gray-700);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .setting-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .select-field {
+            padding: 6px 8px;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            background: white;
+            font-size: 12px;
+            min-width: 90px;
+        }
+
+        .warning-card {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 16px;
+        }
+
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            color: #b45309;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .warning-list {
+            font-size: 11px;
+            color: #92400e;
+            padding-left: 12px;
+        }
+
+        .warning-list li {
+            margin-bottom: 2px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 12px;
+            font-size: 10px;
+            color: var(--gray-600);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .platforms {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .platform-tag {
+            background: var(--gray-100);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        .api-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .api-valid {
+            color: var(--success);
+        }
+
+        .api-invalid {
+            color: var(--danger);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🔍</div>
+            <div class="title">Toxicity Analyzer</div>
+            <div class="subtitle">Real-time chat analysis</div>
+        </div>
+
+        <div class="main-content">
+            <div class="input-group">
+                <div class="input-label">
+                    <span>🔑</span>
+                    Gemini API Key
+                </div>
+                <input type="password" id="apiKey" class="input-field" placeholder="Enter AIzaSy... key">
+                <div class="help-text">
+                    <span>ℹ️</span>
+                    Get free key from Google AI Studio
+                </div>
+                <div id="apiStatus" class="api-status" style="display: none;">
+                    <span class="status-dot"></span>
+                    <span class="status-text"></span>
+                </div>
+            </div>
+
+            <div id="status" class="status-card status-inactive">
+                <div class="status-icon">⏸️</div>
+                <div class="status-text">Ready to Start</div>
+            </div>
+
+            <button id="toggleAnalysis" class="btn-primary">
+                <span>🚀</span>
+                Start Analysis
+            </button>
+
+            <div class="settings">
+                <div class="settings-title">
+                    <span>⚙️</span>
+                    Settings
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">Check Frequency</div>
+                    <select id="analysisDelay" class="select-field">
+                        <option value="5">5 sec</option>
+                        <option value="10" selected>10 sec</option>
+                        <option value="15">15 sec</option>
+                        <option value="30">30 sec</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">Message History</div>
+                    <select id="messageCount" class="select-field">
+                        <option value="5">5 msgs</option>
+                        <option value="10" selected>10 msgs</option>
+                        <option value="15">15 msgs</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">Sensitivity</div>
+                    <select id="sensitivity" class="select-field">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="warning-card">
+                <div class="warning-header">
+                    <span>🛡️</span>
+                    Privacy Protected
+                </div>
+                <ul class="warning-list">
+                    <li>No data stored • No names shared</li>
+                    <li>Analysis happens locally in browser</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Works with popular chat platforms</div>
+            <div class="platforms">
+                <span class="platform-tag">WhatsApp</span>
+                <span class="platform-tag">Messenger</span>
+                <span class="platform-tag">Telegram</span>
+                <span class="platform-tag">Discord</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

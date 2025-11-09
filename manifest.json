@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "Real-time Chat Toxicity Analyzer",
+    "version": "1.0",
+    "description": "Analyze chat conversations for toxic behavior in real-time using Claude AI",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://api.anthropic.com/*",
+        "https://web.whatsapp.com/*",
+        "https://www.messenger.com/*",
+        "https://web.telegram.org/*",
+        "https://discord.com/*",
+        "https://*.slack.com/*",
+        "https://teams.microsoft.com/*",
+        "https://chat.openai.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Chat Toxicity Analyzer"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://web.whatsapp.com/*",
+                "https://www.messenger.com/*",
+                "https://web.telegram.org/*",
+                "https://discord.com/*",
+                "https://*.slack.com/*",
+                "https://teams.microsoft.com/*",
+                "https://chat.openai.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "content.css"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
