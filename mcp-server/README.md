@@ -2,6 +2,10 @@
 
 A Model Context Protocol (MCP) server that enables AI agents to search and analyze Reddit content intelligently. Built with Python and PRAW.
 
+![Python](https://img.shields.io/badge/python-3.13-blue.svg)
+![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)
+![Reddit](https://img.shields.io/badge/Reddit-API-orange.svg)
+
 ## ✨ Features
 
 - 🔍 **Smart Reddit Search** - Search across all subreddits or specific communities
@@ -33,16 +37,24 @@ cd mcp-server
 # Install uv if you haven't already
 curl -LsSf https://astral.sh/uv/install.sh | sh  # macOS/Linux
 # or
+
 # Windows (PowerShell)
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 # Or via pip
 pip install uv  # Any platform
 
-# Create environment and install dependencies
+# Create Environment
+# This creates .venv and installs everything from uv.lock and pyproject.toml
+uv sync
+
+# Activate the environment
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Alternative method to setup env
 uv venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-uv pip install -r requirements.txt
+uv add -r requirements.txt
 ```
 
 #### Option B: Using traditional pip
@@ -59,7 +71,7 @@ Create a Reddit app at https://www.reddit.com/prefs/apps:
 - Choose "script" as the app type
 - Note your Client ID and Client Secret
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root (see .env.example):
 ```env
 REDDIT_CLIENT_ID=your_client_id_here
 REDDIT_CLIENT_SECRET=your_secret_here
@@ -128,7 +140,7 @@ Analyze conversation context to find relevant Reddit discussions.
 - Suggested subreddits for the topic
 
 ### `get_subreddit_info`
-Get detailed information about a subreddit.
+Get detailed information about a subreddit (currently working to rectify).
 
 **Parameters:**
 - `subreddit_name` (str): Name of the subreddit
@@ -161,17 +173,19 @@ Get detailed information about a subreddit.
 Test your server locally with the MCP Inspector:
 
 ```bash
-# Make sure you're in the reddit-mcp-server directory
-cd reddit-mcp-server
+# Make sure you're in the mcp-server directory
+cd mcp-server
 
 # Activate your virtual environment
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Run with MCP Inspector
 npx @modelcontextprotocol/inspector python main.py
+
+# If the above method does not work, run main.py in one terminal and mcp inspector on another (otherwise you don't need to, because the above command will do it at once)
 ```
 
-The Inspector will open in your browser where you can:
+The Inspector will open in your browser (localhost) where you can:
 1. Connect to the server
 2. View available tools
 3. Test each tool with sample inputs
@@ -189,7 +203,7 @@ Add to your Claude Desktop config:
   "mcpServers": {
     "reddit": {
       "command": "python",
-      "args": ["/absolute/path/to/reddit-mcp-server/main.py"],
+      "args": ["/absolute/path/to/mcp-server/main.py"],
       "env": {
         "REDDIT_CLIENT_ID": "your_client_id",
         "REDDIT_CLIENT_SECRET": "your_secret"
@@ -215,6 +229,32 @@ After adding the configuration:
         ▼                    ▼                     ▼
    [User Query]     [Process & Filter]     [Raw Reddit Data]
 ```
+
+## How It Works
+```mermaid
+graph LR
+    A[User Query] --> B[MCP Server]
+    B --> C{Tool Selection}
+    C --> D[Search Reddit]
+    C --> E[Analyze Chat]
+    C --> F[Get Subreddit Info]
+    D --> G[Reddit API]
+    E --> G
+    F --> G
+    G --> H[Process Results]
+    H --> I[Return to Agent]
+```
+
+flowchart LR
+    A[AI Agent] -->|MCP Protocol| B[Reddit MCP Server]
+    B -->|PRAW| C[Reddit API]
+    C -->|JSON| B
+    B -->|Structured Data| A
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#ff9,stroke:#333,stroke-width:2px
+
 
 ## 🐛 Troubleshooting
 
