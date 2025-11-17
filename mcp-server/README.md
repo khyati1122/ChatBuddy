@@ -245,17 +245,6 @@ graph LR
     H --> I[Return to Agent]
 ```
 
-flowchart LR
-    A[AI Agent] -->|MCP Protocol| B[Reddit MCP Server]
-    B -->|PRAW| C[Reddit API]
-    C -->|JSON| B
-    B -->|Structured Data| A
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#ff9,stroke:#333,stroke-width:2px
-
-
 ## 🐛 Troubleshooting
 
 ### Common Issues
