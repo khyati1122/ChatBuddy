@@ -1,0 +1,43 @@
+2025-11-16 16:01:19,880 - __main__ - INFO - Reddit API initialized in read-only mode (no authentication)
+2025-11-16 16:01:19,880 - __main__ - INFO - Note: Rate limits apply (60 requests/minute)
+2025-11-16 16:06:24,985 - __main__ - INFO - Reddit API initialized in read-only mode (no authentication)
+2025-11-16 16:06:24,985 - __main__ - INFO - Note: Rate limits apply (60 requests/minute)
+2025-11-16 16:07:47,202 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2025-11-16 16:08:23,963 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2025-11-16 16:09:08,760 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 16:09:09,076 - __main__ - ERROR - Error getting subreddit info: received 401 HTTP response
+2025-11-16 18:26:40,268 - __main__ - INFO - Reddit API initialized successfully
+2025-11-16 18:33:34,846 - __main__ - INFO - Reddit API initialized successfully
+2025-11-16 18:33:38,965 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2025-11-16 18:34:03,947 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:34:04,435 - __main__ - ERROR - Error getting subreddit info: received 404 HTTP response
+2025-11-16 18:35:26,906 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:36:06,608 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:36:06,706 - __main__ - ERROR - Error getting subreddit info: received 404 HTTP response
+2025-11-16 18:40:10,359 - mcp.server.lowlevel.server - ERROR - Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+2025-11-16 18:40:18,105 - mcp.server.lowlevel.server - ERROR - Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+2025-11-16 18:40:26,687 - __main__ - INFO - Reddit API initialized successfully
+2025-11-16 18:40:40,387 - __main__ - INFO - Reddit API initialized successfully
+2025-11-16 18:40:44,084 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2025-11-16 18:40:52,053 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:45:13,020 - __main__ - INFO - Reddit API initialized successfully
+2025-11-16 18:45:25,110 - __main__ - INFO - Reddit API initialized successfully
+2025-11-16 18:45:30,253 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2025-11-16 18:45:55,267 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:45:55,672 - __main__ - ERROR - Error getting subreddit info: received 404 HTTP response
+2025-11-16 18:46:24,550 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:46:24,653 - __main__ - ERROR - Error getting subreddit info: received 404 HTTP response
+2025-11-16 18:47:11,502 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:52:27,701 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:53:33,683 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:56:42,881 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:59:14,364 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:59:33,159 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 18:59:59,142 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 19:00:18,221 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 19:01:36,060 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-11-16 19:03:14,834 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
