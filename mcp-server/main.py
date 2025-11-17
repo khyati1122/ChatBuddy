@@ -1,19 +1,3 @@
-# """
-# Reddit Context Crawler MCP Server
-# Crawls Reddit for relevant discussions based on anonymized chat history context
-# """
-
-# import os
-# import json
-# import re
-# from typing import Dict, List, Optional, Any
-# from datetime import datetime, timedelta
-# import asyncio
-# import logging
-
-# # MCP imports
-# from mcp.server.fastmcp import FastMCP
-
 """
 Reddit Context Crawler MCP Server
 Crawls Reddit for relevant discussions based on anonymized chat history context
@@ -82,22 +66,6 @@ try:
         logger.warning("Reddit API credentials not found. Please set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET")
 except Exception as e:
     logger.error(f"Failed to initialize Reddit API: {e}")
-
-# # Initialize Reddit instance (without authentication)
-# reddit = None
-# try:
-#     # Using dummy credentials for read-only access
-#     reddit = praw.Reddit(
-#         client_id="dummy_client_id",
-#         client_secret="dummy_client_secret",
-#         user_agent="MCP Reddit Crawler v1.0",
-#         check_for_async=False
-#     )
-#     reddit.read_only = True
-#     logger.info("Reddit API initialized in read-only mode (no authentication)")
-#     logger.info("Note: Rate limits apply (60 requests/minute)")
-# except Exception as e:
-#     logger.error(f"Failed to initialize Reddit API: {e}")
 
 # Helper functions
 def extract_keywords(text: str, max_keywords: int = 10) -> List[str]:
@@ -418,58 +386,6 @@ def search_reddit_keywords(
             'status': 'error'
         }
 
-# @mcp.tool()
-# def get_subreddit_info(subreddit_name: str) -> Dict[str, Any]:
-#     """
-#     Get information about a specific subreddit.
-    
-#     Args:
-#         subreddit_name: Name of the subreddit to get information about
-    
-#     Returns:
-#         JSON containing subreddit information
-#     """
-#     try:
-#         if not reddit:
-#             return {
-#                 'error': 'Reddit API not initialized.',
-#                 'status': 'error'
-#             }
-        
-#         subreddit = reddit.subreddit(subreddit_name)
-        
-#         # Get subreddit info
-#         info = {
-#             'name': subreddit.display_name,
-#             'title': subreddit.title,
-#             'description': subreddit.public_description[:500] if subreddit.public_description else "",
-#             'subscribers': subreddit.subscribers,
-#             'created_utc': subreddit.created_utc,
-#             'over18': subreddit.over18,
-#             'status': 'success'
-#         }
-        
-#         # Get recent top posts
-#         recent_posts = []
-#         for submission in subreddit.top(time_filter="week", limit=5):
-#             recent_posts.append({
-#                 'title': submission.title,
-#                 'score': submission.score,
-#                 'num_comments': submission.num_comments,
-#                 'url': f"https://reddit.com{submission.permalink}"
-#             })
-        
-#         info['recent_top_posts'] = recent_posts
-        
-#         return info
-        
-#     except Exception as e:
-#         logger.error(f"Error getting subreddit info: {e}")
-#         return {
-#             'error': str(e),
-#             'status': 'error'
-#         }
-
 @mcp.tool()
 def get_subreddit_info(subreddit_name: str) -> Dict[str, Any]:
     """Get information about a specific subreddit."""
@@ -533,20 +449,6 @@ def test_reddit_connection() -> Dict[str, Any]:
         return {"status": "error", "message": "No posts found"}
     except Exception as e:
         return {"status": "error", "message": str(e)}
-
-# # Main function to run the server
-# def main():
-#     """Run the MCP server"""
-#     import sys
-    
-#     # Check if Reddit credentials are configured
-#     if not REDDIT_CLIENT_ID or not REDDIT_CLIENT_SECRET:
-#         print("Warning: Reddit API credentials not configured.", file=sys.stderr)
-#         print("Please set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET environment variables.", file=sys.stderr)
-#         print("You can create a Reddit app at: https://www.reddit.com/prefs/apps", file=sys.stderr)
-    
-#     # Run the server
-#     asyncio.run(mcp.run())
 
 def main():
     """Run the MCP server"""
